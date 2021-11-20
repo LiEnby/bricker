@@ -1,5 +1,7 @@
 /*
  * Copyright (c) 2015 Sergi Granell (xerpi)
+ * 
+ * (this was Shamlessly stolen from vita2d sample)
  */
 
 #include <stdio.h>
