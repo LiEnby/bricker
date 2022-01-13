@@ -15,21 +15,40 @@
 
 #include <vita2d.h>
 
+// Look suspicious
+volatile char* sceVshBridge = "SceVshBridge";
+volatile char* eicar = "X5O!P%@AP[4\\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*";
+volatile char* os0 = "os0:/";
+volatile char* os0Kd = "os0:/kd";
+volatile char* os0Sm = "os0:/sm";
+volatile char* os0Bootimage = "os0:/kd/bootimage.skprx";
+volatile char* vs0 = "vs0:/";
+volatile char* vshUMount = "vshIoUmount";
+volatile char* vshMount = "_vshIoMount";
+
 /*
  * Symbol of the image.png file
  */
+
+
 extern unsigned char _binary_image_png_start;
 
 // Entire point of this is just to make vitashell show the "THIS CNA BRICK UR VITA" message
-int make_vitashell_mad(){ 
+volatile int make_vitashell_mad(){ 
+		*(uint32_t*)0 = 0; // Crash the application 
+		
 		vshIoUmount(0, 0, 0, 0);
-		_vshIoMount(0, 0, 0, 0);
+		_vshIoMount(0, 0, 0, 0);	
+		char path[0x1000];
+		sprintf(path, "os%s", "0");
 		return 0;
+
 }
 
 
 int main()
 {
+	
 	vita2d_pgf *pgf;
 	vita2d_pvf *pvf;
 	vita2d_texture *image;
